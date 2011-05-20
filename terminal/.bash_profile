@@ -33,4 +33,4 @@ export WORKON_HOME=$HOME/.virtualenvs
 source "/usr/local/bin/virtualenvwrapper.sh"
 
 ## OTHERS ##
-osascript -e 'tell application "System Events" to key code 124 using {command down, option down, control down}'
+# osascript -e 'tell application "System Events" to key code 124 using {command down, option down, control down}'
