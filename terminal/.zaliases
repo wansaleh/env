@@ -6,9 +6,12 @@ powstart() {
   launchctl load -Fw "$HOME/Library/LaunchAgents/cx.pow.powd.plist"
 }
 
+firefox () {
+  open "Applications/Firefox.app"
+}
+
 ## PHP-FPM ##
 ng() {
-  #! /bin/bash
   NGINX="/usr/local/sbin/nginx"
   PHPFPM="`brew --prefix php`/sbin/php-fpm"
   # PHPFPM="`brew --prefix php`/sbin/php-fpm -c /usr/local/etc -y /usr/local/etc/php-fpm.conf"

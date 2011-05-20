@@ -39,6 +39,12 @@ fpath=(~/.zsh/Completion $fpath)
 ## node.js ##
 export NODE_PATH="/usr/local/lib/node_modules:/usr/local/lib/node"
 
-osascript -e 'tell application "System Events" to key code 124 using {command down, option down, control down}'
+## virtualenv ##
+export WORKON_HOME=$HOME/.virtualenvs
+source "/usr/local/bin/virtualenvwrapper.sh"
 
+## my aliases ##
 source ~/.zaliases
+
+## OTHERS ##
+osascript -e 'tell application "System Events" to key code 124 using {command down, option down, control down}'
