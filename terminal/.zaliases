@@ -1,0 +1,76 @@
+## POW.cx ##
+powstop() {
+  launchctl unload "$HOME/Library/LaunchAgents/cx.pow.powd.plist"
+}
+powstart() {
+  launchctl load -Fw "$HOME/Library/LaunchAgents/cx.pow.powd.plist"
+}
+
+## PHP-FPM ##
+ng() {
+  #! /bin/bash
+  NGINX="/usr/local/sbin/nginx"
+  PHPFPM="`brew --prefix php`/sbin/php-fpm"
+  # PHPFPM="`brew --prefix php`/sbin/php-fpm -c /usr/local/etc -y /usr/local/etc/php-fpm.conf"
+  PIDPATH="/usr/local/var/run"
+
+  if [ $1 = "start" ]; then
+      echo "Starting php-fpm ..."
+      $PHPFPM
+      echo "Starting nginx ..."
+      $NGINX
+      echo "Done!"
+  elif [ $1 = "stop" ]; then
+      echo "Stopping nginx ..."
+      $NGINX -s stop
+      echo "Stopping php-fpm ..."
+      kill `cat $PIDPATH/php-fpm.pid`
+      echo "Done!"
+  elif [ $1 = "restart" ]; then
+      echo "Stopping nginx ..."
+      kill `cat $PIDPATH/nginx/nginx.pid`
+      echo "Stopping php-fpm ..."
+      kill `cat $PIDPATH/php-fpm.pid`
+      echo "Starting php-fpm ..."
+      $PHPFPM
+      echo "Starting nginx ..."
+      $NGINX
+      echo "Done!"
+  elif [ $1 = "nginx" ]; then
+      if [ $2 = "start" ]; then
+          echo "Starting nginx ..."
+          $NGINX
+      elif [ $2 = "stop" ]; then
+          echo "Stopping nginx ..."
+          $NGINX -s stop
+      elif [ $2 = "restart" ]; then
+          echo "Stopping nginx ..."
+          kill `cat $PIDPATH/nginx/nginx.pid`
+          echo "Starting nginx ..."
+          $NGINX
+      else
+          echo "Valid commands for nginx: start | stop | restart"
+      fi
+  elif [ $1 = "php" ] || [ $1 = "php-fpm" ]; then
+      if [ $2 = "start" ]; then
+          echo "Starting php-fpm ..."
+          $PHPFPM
+      elif [ $2 = "stop" ]; then
+          echo "Stopping php-fpm ..."
+          kill `cat $PIDPATH/php-fpm.pid`
+      elif [ $2 = "restart" ]; then
+          echo "Stopping php-fpm ..."
+          kill `cat $PIDPATH/php-fpm.pid`
+          echo "Starting php-fpm ..."
+          $PHPFPM
+      else
+          echo "Valid commands for php-fpm: start | stop | restart"
+      fi
+  else
+      echo "Valid commands: "
+      echo "start | stop | restart"
+      echo "----------------------------------------"
+      echo "nginx (start | stop | restart)"
+      echo "php | php-fpm (start | stop | restart)"
+  fi
+}
