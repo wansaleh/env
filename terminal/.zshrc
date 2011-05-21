@@ -23,25 +23,25 @@ export CASE_SENSITIVE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew gem rails git ruby svn)
+plugins=(brew gem rails git ruby perl pip svn npm)
 
 source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
 
 ## PATH ##
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 ## RVM ##
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-fpath=(~/.zsh/Completion $fpath)
 
-## node.js ##
-export NODE_PATH="/usr/local/lib/node_modules:/usr/local/lib/node"
+## PERLBREW ##
+source ~/perl5/perlbrew/etc/bashrc
 
-## virtualenv ##
+## VIRTUALENV ##
 export WORKON_HOME=$HOME/.virtualenvs
 source "/usr/local/bin/virtualenvwrapper.sh"
+
+## NODE.JS ##
+export NODE_PATH="/usr/local/lib/node_modules:/usr/local/lib/node"
 
 ## my aliases ##
 [[ -s "$HOME/.aliases" ]] && . "$HOME/.aliases"
