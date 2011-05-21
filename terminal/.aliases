@@ -1,3 +1,57 @@
+# textmate
+m()
+{
+  # Shell (bash) function which opens a directory as a project in TextMate
+  # excluding directories that tend to slow down "Find in Project"
+  #
+  # Add this function to your dotfiles or ~/.bash_profile for it to be available
+  # in your shell.
+  
+  shopt -s extglob # Enable extended globbing
+   
+  # Invoke TextMate upon all the files and directories except those listed
+  mate !(@(cache|db|log|tmp)) "$@"
+  
+  shopt -u extglob # Disable extended globbing
+}
+
+## Aliases ##
+alias c='clear'
+
+## RVM shortcuts
+alias use='rvm use'
+
+rswitch () {
+  rvm use $1
+  local v=$(rversion)
+  rvm wrapper $1 textmate
+  echo "Switched to Ruby version: $v"
+}
+
+rdefault () {
+  rvm use --default $1
+  rvm wrapper $1 textmate
+}
+
+rversion () {
+  ruby --version
+}
+# 
+# gemset () {
+#   rvm use 
+# }
+
+function gemdir {
+  if [[ -z "$1" ]] ; then
+    echo "gemdir expects a parameter, which should be a valid RVM Ruby selector"
+  else
+    rvm "$1"
+    cd $(rvm gemdir)
+    pwd
+  fi
+}
+
+
 ## POW.cx ##
 powstop() {
   launchctl unload "$HOME/Library/LaunchAgents/cx.pow.powd.plist"
