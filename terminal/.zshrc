@@ -34,7 +34,7 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 ## PERLBREW ##
-source "~/perl5/perlbrew/etc/bashrc"
+source "$HOME/perl5/perlbrew/etc/bashrc"
 
 ## VIRTUALENV ##
 export WORKON_HOME=$HOME/.virtualenvs
