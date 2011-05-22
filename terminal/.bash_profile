@@ -32,7 +32,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 source "/usr/local/bin/virtualenvwrapper.sh"
 
 ## NODE.JS ##
-export NODE_PATH="/usr/local/lib/node_modules:/usr/local/lib/node"
+export NODE_PATH="/usr/local/lib/node:/usr/local/lib/node_modules"
 
 ## my aliases ##
 [[ -s "$HOME/.aliases" ]] && . "$HOME/.aliases"

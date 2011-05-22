@@ -1,5 +1,9 @@
 ## Aliases ##
 
+# homebrew fix permissions
+# alias brewfix='ruby -e "$(curl -fsSL https://gist.github.com/raw/768518/fix_homebrew.rb)"'
+alias brewfix='~/dev/ruby/homebrew/repair.rb'
+
 # textmate
 alias c='clear'
 alias m='mate'
